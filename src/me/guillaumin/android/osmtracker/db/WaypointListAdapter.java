@@ -40,7 +40,7 @@ public class WaypointListAdapter extends CursorAdapter {
 	 *            {@link Cursor} to data
 	 */
 	public WaypointListAdapter(Context context, Cursor c) {
-		super(context, c);
+		super(context, c, 0);
 	}
 
 	@Override

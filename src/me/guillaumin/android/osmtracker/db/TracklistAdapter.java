@@ -22,7 +22,7 @@ import android.widget.TextView;
 public class TracklistAdapter extends CursorAdapter {
 
 	public TracklistAdapter(Context context, Cursor c) {
-		super(context, c);
+        super(context, c, 0);
 	}
 
 	@Override

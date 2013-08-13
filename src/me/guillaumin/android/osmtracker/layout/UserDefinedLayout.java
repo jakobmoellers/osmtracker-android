@@ -69,7 +69,7 @@ public class UserDefinedLayout extends LinearLayout {
 			XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 			parser = factory.newPullParser();
 			parser.setInput(new FileReader(xmlLayout));
-			udlr = new UserDefinedLayoutReader(this, getContext(), activity, trackId, parser, new ExternalDirectoryIconResolver(xmlLayout.getParentFile()));
+			udlr = new UserDefinedLayoutReader(this, getContext(), activity, trackId, parser, new ExternalDirectoryIconResolver(this.getContext(),xmlLayout.getParentFile()));
 		}
 		
 		layouts = udlr.parseLayout();

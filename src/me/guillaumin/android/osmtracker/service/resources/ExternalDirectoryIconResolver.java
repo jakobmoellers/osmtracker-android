@@ -2,6 +2,7 @@ package me.guillaumin.android.osmtracker.service.resources;
 
 import java.io.File;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -20,8 +21,10 @@ public class ExternalDirectoryIconResolver implements IconResolver {
 	 * Base directory to read icon files.
 	 */
 	private File directory;
+	private Context context;
 		
-	public ExternalDirectoryIconResolver(File baseDir) {
+	public ExternalDirectoryIconResolver(Context context, File baseDir) {
+        this.context = context;
 		if (!baseDir.isDirectory()) {
 			throw new IllegalArgumentException("baseDir must be a directory. " + baseDir + " is not.");
 		}
@@ -37,7 +40,7 @@ public class ExternalDirectoryIconResolver implements IconResolver {
 			File iconFile = new File(directory, key);
 			if (iconFile.exists() && iconFile.canRead()) {
 				Bitmap iconBitmap = BitmapFactory.decodeFile(iconFile.getAbsolutePath());
-				BitmapDrawable iconDrawable = new BitmapDrawable(iconBitmap);
+				BitmapDrawable iconDrawable = new BitmapDrawable(context.getResources(),iconBitmap);
 				return iconDrawable;
 			} else {
 				return null;

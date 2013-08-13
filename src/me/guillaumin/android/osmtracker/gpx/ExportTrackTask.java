@@ -388,7 +388,7 @@ public abstract class ExportTrackTask  extends AsyncTask<Void, Integer, Boolean>
 			
 		    String link = c.getString(c.getColumnIndex(Schema.COL_LINK));
 		    if (link != null) {
-		       	out.append("\t\t" + "<link href=\"" + URLEncoder.encode(link) + "\">" + "\n");
+		       	out.append("\t\t" + "<link href=\"" + URLEncoder.encode(link,"UTF-8") + "\">" + "\n");
 		       	out.append("\t\t\t" + "<text>" + link +"</text>\n");
 		       	out.append("\t\t" + "</link>" + "\n");
 		    }

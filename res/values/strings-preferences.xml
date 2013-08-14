@@ -32,6 +32,16 @@
 		<item>Landscape</item>
 	</string-array>
 	
+	<string name="prefs_ui_default_zoom">Zoom level</string>
+	<string name="prefs_ui_default_zoom_summary">Default zoom level for map</string>
+	<string-array name="prefs_ui_default_zoom_keys">
+        <item>House</item>
+        <item>Street</item>
+        <item>City</item>
+        <item>State</item>
+        <item>Country</item>
+    </string-array>
+	
 
 	<string name="prefs_voicerec_duration">Voice record duration</string>
 	<string name="prefs_voicerec_duration_seconds">seconds</string>

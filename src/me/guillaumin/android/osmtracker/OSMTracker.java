@@ -29,11 +29,13 @@ public class OSMTracker {
 		public final static String KEY_UI_BUTTONS_LAYOUT = "ui.buttons.layout";
 		public final static String KEY_UI_DISPLAYTRACK_OSM = "ui.displaytrack.osm";
 		public final static String KEY_UI_DISPLAY_KEEP_ON = "ui.display_keep_on";
+		public final static String KEY_UI_DEFAULT_ZOOM = "ui.default_zoom";
 		public final static String KEY_SOUND_ENABLED = "sound_enabled";
 		public final static String KEY_UI_ORIENTATION = "ui.orientation";
 		public final static String KEY_OSM_OAUTH_TOKEN = "osm.oauth.token";
 		public final static String KEY_OSM_OAUTH_SECRET = "osm.oauth.secret";
 		public final static String KEY_OSM_OAUTH_CLEAR_DATA = "osm.oauth.clear-data";
+		
 
 		// Default values
 		public final static String VAL_STORAGE_DIR = "/osmtracker";
@@ -61,9 +63,11 @@ public class OSMTracker {
 		public final static boolean VAL_UI_DISPLAY_KEEP_ON = true;
 		public final static boolean VAL_SOUND_ENABLED = true;
 		public final static String VAL_UI_ORIENTATION_NONE = "none";
+		public final static int VAL_UI_DEFAULT_ZOOM = 16;
 		public final static String VAL_UI_ORIENTATION_PORTRAIT = "portrait";
 		public final static String VAL_UI_ORIENTATION_LANDSCAPE = "landscape";
 		public final static String VAL_UI_ORIENTATION = VAL_UI_ORIENTATION_NONE;
+		
 	};
 	
 	/**

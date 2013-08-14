@@ -87,7 +87,7 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 	 * Default zoom level
 	 */
 	private static final int DEFAULT_ZOOM  = 16;
-
+	
 	/**
 	 * Main OSM view
 	 */
@@ -172,7 +172,8 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
         
         // Check if there is a saved zoom level
         if(savedInstanceState != null) {
-        	osmViewController.setZoom(savedInstanceState.getInt(CURRENT_ZOOM, DEFAULT_ZOOM));
+//        	osmViewController.setZoom(savedInstanceState.getInt(CURRENT_ZOOM, DEFAULT_ZOOM));
+            osmViewController.setZoom(savedInstanceState.getInt(CURRENT_ZOOM, prefs.getInt(OSMTracker.Preferences.KEY_UI_DEFAULT_ZOOM, OSMTracker.Preferences.VAL_UI_DEFAULT_ZOOM)));
         	osmView.scrollTo(savedInstanceState.getInt(CURRENT_SCROLL_X, 0),
         			savedInstanceState.getInt(CURRENT_SCROLL_Y, 0));
         	centerToGpsPos = savedInstanceState.getBoolean(CURRENT_CENTER_TO_GPS_POS, centerToGpsPos);

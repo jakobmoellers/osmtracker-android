@@ -63,7 +63,7 @@ public class OSMTracker {
 		public final static boolean VAL_UI_DISPLAY_KEEP_ON = true;
 		public final static boolean VAL_SOUND_ENABLED = true;
 		public final static String VAL_UI_ORIENTATION_NONE = "none";
-		public final static int VAL_UI_DEFAULT_ZOOM = 16;
+		public final static String VAL_UI_DEFAULT_ZOOM = "16";
 		public final static String VAL_UI_ORIENTATION_PORTRAIT = "portrait";
 		public final static String VAL_UI_ORIENTATION_LANDSCAPE = "landscape";
 		public final static String VAL_UI_ORIENTATION = VAL_UI_ORIENTATION_NONE;

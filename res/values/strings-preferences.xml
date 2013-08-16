@@ -35,6 +35,7 @@
 	<string name="prefs_ui_default_zoom">Zoom level</string>
 	<string name="prefs_ui_default_zoom_summary">Default zoom level for map</string>
 	<string-array name="prefs_ui_default_zoom_keys">
+	    <item>Auto</item>
         <item>House</item>
         <item>Street</item>
         <item>City</item>

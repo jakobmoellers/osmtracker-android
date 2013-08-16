@@ -166,28 +166,6 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
         osmView.setKeepScreenOn(prefs.getBoolean(OSMTracker.Preferences.KEY_UI_DISPLAY_KEEP_ON, OSMTracker.Preferences.VAL_UI_DISPLAY_KEEP_ON));
         osmViewController = osmView.getController();
         
-        // Check if there is a saved zoom level
-        if(savedInstanceState != null) {
-//        	osmViewController.setZoom(savedInstanceState.getInt(CURRENT_ZOOM, DEFAULT_ZOOM));
-            Log.e("zoom","here");
-//            Log.e("zoom","the zoom level should be "+prefs.getInt(OSMTracker.Preferences.KEY_UI_DEFAULT_ZOOM, OSMTracker.Preferences.VAL_UI_DEFAULT_ZOOM));
-//            osmViewController.setZoom(savedInstanceState.getInt(CURRENT_ZOOM, prefs.getInt(OSMTracker.Preferences.KEY_UI_DEFAULT_ZOOM, OSMTracker.Preferences.VAL_UI_DEFAULT_ZOOM)));
-        	Log.e("zoom","zoom level set.");
-            osmView.scrollTo(savedInstanceState.getInt(CURRENT_SCROLL_X, 0),
-        			savedInstanceState.getInt(CURRENT_SCROLL_Y, 0));
-        	centerToGpsPos = savedInstanceState.getBoolean(CURRENT_CENTER_TO_GPS_POS, centerToGpsPos);
-        	zoomedToTrackAlready = savedInstanceState.getBoolean(CURRENT_ZOOMED_TO_TRACK, zoomedToTrackAlready);
-        } else {
-        	// Try to get last zoom Level from Shared Preferences
-            Log.e("zoom","else");
-        	SharedPreferences settings = getPreferences(MODE_PRIVATE);
-        	String zoomLevel = prefs.getString(OSMTracker.Preferences.KEY_UI_DEFAULT_ZOOM, OSMTracker.Preferences.VAL_UI_DEFAULT_ZOOM);
-        	Log.e("zoom",zoomLevel);
-        	int zoomlevel = Integer.valueOf(zoomLevel);
-//        	osmViewController.setZoom(settings.getInt(LAST_ZOOM, zoomlevel));
-        	osmViewController.setZoom(zoomlevel);
-        }
-
         createOverlays();
 
         // Create content observer for trackpoints
@@ -431,7 +409,18 @@ public class DisplayTrackMap extends Activity implements OpenStreetMapContributo
 		    	osmView.post(new Runnable() {
 					@Override
 					public void run() {
-//						osmViewController.zoomToSpan(new BoundingBoxE6(north, east, south, west));
+					    /*
+					     * Sets the zoom level for the map. If the user chose "auto", the last zoom
+					     * level or the default zoom level (16) is selected. If the user specified a
+					     * custom zoom level, this level is set for the map.
+					     */
+				        String zoomLevelString = prefs.getString(OSMTracker.Preferences.KEY_UI_DEFAULT_ZOOM, OSMTracker.Preferences.VAL_UI_DEFAULT_ZOOM);
+				        int zoomLevel = Integer.valueOf(zoomLevelString);
+				        if (zoomLevel==Integer.valueOf(OSMTracker.Preferences.VAL_UI_DEFAULT_ZOOM)){
+				            osmViewController.zoomToSpan(new BoundingBoxE6(north, east, south, west));
+				        } else {
+				            osmViewController.setZoom(zoomLevel);
+				        }
 						osmViewController.setCenter(new GeoPoint((north + south) / 2, (east + west) / 2));
 						zoomedToTrackAlready = true;
 					}

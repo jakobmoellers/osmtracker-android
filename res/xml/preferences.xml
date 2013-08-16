@@ -50,7 +50,7 @@
 			android:summary="@string/prefs_displaytrack_osm_summary" android:defaultValue="false"></CheckBoxPreference>
 		<ListPreference android:defaultValue="none" android:key="ui.orientation" android:title="@string/prefs_ui_orientation"
 			android:summary="@string/prefs_ui_orientation_summary" android:entries="@array/prefs_ui_orientation_options_keys" android:entryValues="@array/prefs_ui_orientation_options_values"></ListPreference>
-		<ListPreference android:key="ui.default_zoom" android:title="@string/prefs_ui_default_zoom"
+		<ListPreference android:defaultValue="16" android:key="ui.default_zoom" android:title="@string/prefs_ui_default_zoom"
             android:summary="@string/prefs_ui_default_zoom_summary" android:entries="@array/prefs_ui_default_zoom_keys" android:entryValues="@array/prefs_ui_default_zoom_values"></ListPreference>
 	</PreferenceCategory>
 

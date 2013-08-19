@@ -19,6 +19,7 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -57,6 +58,11 @@ public class TrackManager extends ListActivity {
 
 	/** The previous item visible, or -1; for scrolling back to its position in {@link #onResume()} */
 	private int prevItemVisible = -1;
+	
+	/**
+	 * Shared preferences
+	 */
+	private SharedPreferences prefs = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +73,7 @@ public class TrackManager extends ListActivity {
 		if (savedInstanceState != null) {
 			prevItemVisible = savedInstanceState.getInt(PREV_VISIBLE, -1);
 		}
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 	}
 
 	@Override
@@ -463,7 +470,9 @@ public class TrackManager extends ListActivity {
 			sendBroadcast(intent);
 			
 			// need to get sure, that the database is up to date
-			DataHelper dataHelper = new DataHelper(this);
+			int altitudeOffset = Integer.valueOf(prefs.getString(OSMTracker.Preferences.KEY_GPS_ALTITUDE_OFFSET, OSMTracker.Preferences.VAL_GPS_ALTITUDE_OFFSET));
+			DataHelper dataHelper = new DataHelper(this,altitudeOffset);
+			
 			dataHelper.stopTracking(currentTrackId);
 
 			// set the currentTrackId to "no track"

@@ -81,5 +81,7 @@
 	<string name="prefs_osm_clear_oauth_data">Reset OSM authentication</string>
 	<string name="prefs_osm_clear_oauth_data_summary">Forget OSM credentials and permissions and force OSMTracker to ask them again</string>
 	<string name="prefs_osm_clear_oauth_data_dialog">You\'ll have to authorize OSMTracker to upload tracks again. Are you sure?</string>
+	<string name="prefs_gps_altitude_offset_summary">GPS Altitude User Defined Offset</string>
+	<string name="prefs_gps_altitude_offset">GPS Altitude Offset</string>
 
 </resources>

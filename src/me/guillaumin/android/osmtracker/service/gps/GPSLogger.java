@@ -14,6 +14,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
 import android.location.Location;
@@ -84,6 +85,11 @@ public class GPSLogger extends Service implements LocationListener {
 	 * the interval (in ms) to log GPS fixes defined in the preferences
 	 */
 	private long gpsLoggingInterval;
+	
+	/**
+	 * Shared preferences
+	 */
+	private SharedPreferences prefs = null;
 	
 	
 	/**
@@ -182,7 +188,9 @@ public class GPSLogger extends Service implements LocationListener {
 	@Override
 	public void onCreate() {	
 		Log.v(TAG, "Service onCreate()");
-		dataHelper = new DataHelper(this);
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		int altitudeOffset = Integer.valueOf(prefs.getString(OSMTracker.Preferences.KEY_GPS_ALTITUDE_OFFSET, OSMTracker.Preferences.VAL_GPS_ALTITUDE_OFFSET));
+		dataHelper = new DataHelper(this,altitudeOffset);
 
 		//read the logging interval from preferences
 		gpsLoggingInterval = Long.parseLong(PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext()).getString(

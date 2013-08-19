@@ -62,16 +62,19 @@ public class DataHelper {
 	 * ContentResolver to interact with content provider
 	 */
 	private ContentResolver contentResolver;
-
+	
+	private int altitudeOffset = 0;
+	
 	/**
 	 * Constructor.
 	 * 
 	 * @param c
 	 *            Application context.
 	 */
-	public DataHelper(Context c) {
+	public DataHelper(Context c, int altitudeOffset) {
 		context = c;
 		contentResolver = c.getContentResolver();
+		this.altitudeOffset = altitudeOffset;
 	}
 
 	/**
@@ -89,7 +92,7 @@ public class DataHelper {
 		values.put(Schema.COL_LATITUDE, location.getLatitude());
 		values.put(Schema.COL_LONGITUDE, location.getLongitude());
 		if (location.hasAltitude()) {
-			values.put(Schema.COL_ELEVATION, location.getAltitude());
+			values.put(Schema.COL_ELEVATION, location.getAltitude() + altitudeOffset);
 		}
 		if (location.hasAccuracy()) {
 			values.put(Schema.COL_ACCURACY, location.getAccuracy());
@@ -142,7 +145,7 @@ public class DataHelper {
 			}
 			
 			if (location.hasAltitude()) {
-				values.put(Schema.COL_ELEVATION, location.getAltitude());
+				values.put(Schema.COL_ELEVATION, location.getAltitude() + altitudeOffset);
 			}
 			if (location.hasAccuracy()) {
 				values.put(Schema.COL_ACCURACY, location.getAccuracy());
